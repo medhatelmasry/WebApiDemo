@@ -13,11 +13,14 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 
+    // http://localhost:5278/swagger
     // app.UseSwaggerUI(options =>  {
     //     options.SwaggerEndpoint("/openapi/v1.json", "My WebAPI");
     // });
 
-    app.MapScalarApiReference(options => {
+    // http://localhost:5278/scalar/v1
+    app.MapScalarApiReference(options =>
+    {
         options
             .WithTitle("My WebAPI")
             .WithTheme(ScalarTheme.Moon)
@@ -34,7 +37,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
